@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gists List</title>
+	<script src="angular.min.js" type="text/javascript"></script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="custom.css">
+	<script src="script.js" type="text/javascript" ></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="script.js" type="text/javascript"></script>
+	 <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<body  ng-app="myModule">
+
+<div ng-controller="myController" ng-init="next()">
+
+<h2 align="center">List of Public Gists</h2>
+Search By User Login:-
+<p><input type="text" ng-model="test.login"></p>
+Search By Description:-
+<p><input type="text" ng-model="test1.des"></p>
+
+Filter by-
+<p><select ng-model="test3.upd">
+		<option value="none">None</option>
+		<option value="upd" selected>Last update Date</option>
+	</select></p>
+<button type="button" id="b1"  ng-click="prev()">Prev</button>
+<span id="page">Page:{{pn}}</span>
+<button type="button" id="b2" value="0" ng-click="next()">Next</button>
+
+	<table class="table-striped table-bordered table-hover" style="width: 100%" id="t1">
+		<thead>
+			<th>LOGIN</th>
+			<th>DESCRIPTION</th>
+			<th>LAST UPDATE DATE</th>
+			<th>GIST lINK</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="x in temp|filter:test|filter:test1|orderBy:test3">
+			<td>{{ x.login }}</td>
+			<td>{{ x.des }}</td>
+			<td>{{ x.upd }}</td>
+			<td><a href="{{ x.html_url }}">Link</a></td>
+		</tr>
+		</tbody>
+		
+	</table>
+
+</div>
+</body>
+</html>
